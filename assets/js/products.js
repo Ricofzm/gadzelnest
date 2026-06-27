@@ -1,34 +1,40 @@
 async function loadProducts(){
 
-    const response = await fetch("data/products.json");
+    try{
 
-    const products = await response.json();
+        const response = await fetch("data/products.json");
 
-    const grid = document.getElementById("voucherGrid");
+        const products = await response.json();
 
-    products.forEach(product=>{
+        const grid = document.getElementById("voucherGrid");
 
-        grid.innerHTML += `
+        products.forEach(product=>{
 
-        <div class="voucher-card"
-            data-name="${product.name}"
-            data-price="${product.price}">
+            grid.innerHTML += `
+                <div class="voucher-card"
+                    data-name="${product.name}"
+                    data-price="${product.price}">
 
-            <h3>${product.name}</h3>
+                    <h3>${product.name}</h3>
 
-            <p>${product.cash}</p>
+                    <p>${product.cash}</p>
 
-            <span>
-                Rp ${product.price.toLocaleString("id-ID")}
-            </span>
+                    <span>
+                        Rp ${product.price.toLocaleString("id-ID")}
+                    </span>
 
-        </div>
+                </div>
+            `;
 
-        `;
+        });
 
-    });
+        activateVoucher();
 
-    activateVoucher();
+    }catch(err){
+
+        console.error(err);
+
+    }
 
 }
 
