@@ -22,8 +22,7 @@ function activateVoucher() {
 
             document.getElementById("summary-total").textContent =
                 "Rp " + Number(card.dataset.price).toLocaleString("id-ID");
-                
-            document.getElementById("checkoutBtn").disabled = false;
+            validateCheckout();
 
         };
 
@@ -37,11 +36,13 @@ const serverInput = document.getElementById("serverId");
 charInput.addEventListener("input", () => {
     document.getElementById("summary-char").textContent =
         charInput.value || "-";
+    validateCheckout();
 });
 
 serverInput.addEventListener("input", () => {
     document.getElementById("summary-server").textContent =
         serverInput.value || "-";
+    validateCheckout();
 });
 
 const payments = document.querySelectorAll(".payment-card");
@@ -56,6 +57,8 @@ payments.forEach(payment => {
 
         document.getElementById("summary-payment").textContent =
             payment.textContent;
+            
+        validateCheckout();
 
     });
 
@@ -90,3 +93,24 @@ document.getElementById("closeModal").addEventListener("click", () => {
     modal.classList.remove("active");
 
 });
+
+function validateCheckout(){
+
+    const charId = charInput.value.trim();
+
+    const serverId = serverInput.value.trim();
+
+    const voucher =
+        document.getElementById("summary-voucher").textContent;
+
+    const payment =
+        document.getElementById("summary-payment").textContent;
+
+    checkoutBtn.disabled = !(
+        charId &&
+        serverId &&
+        voucher !== "-" &&
+        payment !== "-"
+    );
+
+}
