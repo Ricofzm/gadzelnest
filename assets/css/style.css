@@ -223,7 +223,6 @@ body{
 /* ==========================
    PAYMENT
 ========================== */
-
 .payment-section{
     width:90%;
     max-width:500px;
@@ -237,31 +236,19 @@ body{
 }
 
 .payment-card{
-
     background:#171a21;
-
     border:1px solid #2c2f36;
-
     border-radius:14px;
-
     padding:18px;
-
     text-align:center;
-
     cursor:pointer;
-
     transition:.3s;
-
     font-weight:600;
-
 }
 
 .payment-card:hover{
-
     border:1px solid #00d9ff;
-
     transform:translateY(-3px);
-
 }
 
 /* ==========================
@@ -269,41 +256,23 @@ body{
 ========================== */
 
 .checkout-bar{
-
     position:fixed;
-
     bottom:0;
-
     left:0;
-
     width:100%;
-
     background:#171a21;
-
     padding:15px 20px;
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
     border-top:1px solid #2c2f36;
-
 }
 
 .checkout-bar button{
-
     background:#00d9ff;
-
     color:#111;
-
     border:none;
-
     padding:14px 22px;
-
     border-radius:12px;
-
     font-weight:bold;
-
 }
