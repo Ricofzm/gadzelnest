@@ -1,26 +1,35 @@
-const products = [
-    {
-        id:1,
-        name:"626 Cash Pack",
-        bonus:"600 + 26 Bonus",
-        price:12850
-    },
-    {
-        id:2,
-        name:"3130 Cash Pack",
-        bonus:"3000 + 130 Bonus",
-        price:65921
-    },
-    {
-        id:3,
-        name:"6366 Cash Pack",
-        bonus:"6000 + 366 Bonus",
-        price:131850
-    },
-    {
-        id:4,
-        name:"12800 Cash Pack",
-        bonus:"12000 + 800 Bonus",
-        price:259900
-    }
-];
+async function loadProducts(){
+
+    const response = await fetch("data/products.json");
+
+    const products = await response.json();
+
+    const grid = document.getElementById("voucherGrid");
+
+    products.forEach(product=>{
+
+        grid.innerHTML += `
+
+        <div class="voucher-card"
+            data-name="${product.name}"
+            data-price="${product.price}">
+
+            <h3>${product.name}</h3>
+
+            <p>${product.cash}</p>
+
+            <span>
+                Rp ${product.price.toLocaleString("id-ID")}
+            </span>
+
+        </div>
+
+        `;
+
+    });
+
+    activateVoucher();
+
+}
+
+loadProducts();
