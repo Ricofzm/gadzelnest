@@ -43,3 +43,17 @@ serverInput.addEventListener("input", () => {
     document.getElementById("summary-server").textContent =
         serverInput.value || "-";
 });
+
+const payments=document.querySelectorAll(".payment-card");
+
+payments.forEach(payment=>{
+
+payment.onclick=()=>{
+
+payments.forEach(p=>p.classList.remove("active"));
+
+payment.classList.add("active");
+
+}
+
+});
