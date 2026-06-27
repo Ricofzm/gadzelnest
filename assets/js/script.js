@@ -54,6 +54,9 @@ payments.forEach(payment => {
 
         payment.classList.add("active");
 
+        document.getElementById("summary-payment").textContent =
+            payment.textContent;
+
     });
 
 });
