@@ -1,25 +1,25 @@
-let selectedProduct = null;
+function activateVoucher(){
 
-const cards = document.querySelectorAll(".voucher-card");
+    const cards=document.querySelectorAll(".voucher-card");
 
-const checkoutName = document.getElementById("checkout-name");
-const checkoutPrice = document.getElementById("checkout-price");
+    const checkoutName=document.getElementById("checkout-name");
 
-cards.forEach(card => {
+    const checkoutPrice=document.getElementById("checkout-price");
 
-    card.addEventListener("click", () => {
+    cards.forEach(card=>{
 
-        cards.forEach(c => c.classList.remove("active"));
+        card.onclick=()=>{
 
-        card.classList.add("active");
+            cards.forEach(c=>c.classList.remove("active"));
 
-        const name = card.dataset.name;
-        const price = Number(card.dataset.price);
+            card.classList.add("active");
 
-        checkoutName.textContent = name;
-        checkoutPrice.textContent =
-            "Rp " + price.toLocaleString("id-ID");
+            checkoutName.innerHTML=card.dataset.name;
+
+            checkoutPrice.innerHTML="Rp "+Number(card.dataset.price).toLocaleString("id-ID");
+
+        }
 
     });
 
-});
+}
