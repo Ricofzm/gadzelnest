@@ -1,1 +1,1 @@
-
+let selectedProduct = null;
