@@ -68,7 +68,7 @@
         
                     <label>Char ID</label>
         
-                    <input type="text" placeholder="Masukkan Char ID">
+                    <input id="charId" type="text" placeholder="Masukkan Char ID">
         
                 </div>
         
@@ -76,7 +76,7 @@
         
                     <label>Server ID</label>
         
-                    <input type="text" placeholder="Masukkan Server ID">
+                    <input id="serverId" type="text" placeholder="Masukkan Server ID">
         
                 </div>
         
@@ -130,6 +130,43 @@
                 <div class="payment-card">ShopeePay</div>
         
                 <div class="payment-card">BCA VA</div>
+        
+            </div>
+        
+        </section>
+        
+        <!-- ORDER SUMMARY -->
+        <section class="summary-section">
+        
+            <div class="section-title">
+        
+                <div class="step-number">4</div>
+        
+                <h2>Ringkasan Pesanan</h2>
+        
+            </div>
+        
+            <div class="summary-card">
+        
+                <div class="summary-row">
+                    <span>Char ID</span>
+                    <strong id="summary-char">-</strong>
+                </div>
+        
+                <div class="summary-row">
+                    <span>Server ID</span>
+                    <strong id="summary-server">-</strong>
+                </div>
+        
+                <div class="summary-row">
+                    <span>Voucher</span>
+                    <strong id="summary-voucher">-</strong>
+                </div>
+        
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <strong id="summary-total">Rp0</strong>
+                </div>
         
             </div>
         
