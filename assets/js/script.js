@@ -60,3 +60,33 @@ payments.forEach(payment => {
     });
 
 });
+
+const checkoutBtn = document.getElementById("checkoutBtn");
+const modal = document.getElementById("orderModal");
+
+checkoutBtn.addEventListener("click", () => {
+
+    document.getElementById("modal-char").textContent =
+        document.getElementById("summary-char").textContent;
+
+    document.getElementById("modal-server").textContent =
+        document.getElementById("summary-server").textContent;
+
+    document.getElementById("modal-voucher").textContent =
+        document.getElementById("summary-voucher").textContent;
+
+    document.getElementById("modal-payment").textContent =
+        document.getElementById("summary-payment").textContent;
+
+    document.getElementById("modal-total").textContent =
+        document.getElementById("summary-total").textContent;
+
+    modal.classList.add("active");
+
+});
+
+document.getElementById("closeModal").addEventListener("click", () => {
+
+    modal.classList.remove("active");
+
+});
