@@ -2,14 +2,10 @@ let selectedProduct = null;
 
 const cards = document.querySelectorAll(".voucher-card");
 
-const prices = [
-    12850,
-    65921,
-    131850,
-    259900
-];
+const checkoutName = document.getElementById("checkout-name");
+const checkoutPrice = document.getElementById("checkout-price");
 
-cards.forEach((card, index) => {
+cards.forEach(card => {
 
     card.addEventListener("click", () => {
 
@@ -17,11 +13,12 @@ cards.forEach((card, index) => {
 
         card.classList.add("active");
 
-        document.getElementById("checkout-price").innerHTML =
-            "Rp " + prices[index].toLocaleString("id-ID");
+        const name = card.dataset.name;
+        const price = Number(card.dataset.price);
 
-        document.getElementById("checkout-name").innerHTML =
-            card.querySelector("h3").innerHTML;
+        checkoutName.textContent = name;
+        checkoutPrice.textContent =
+            "Rp " + price.toLocaleString("id-ID");
 
     });
 
