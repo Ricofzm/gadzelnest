@@ -220,6 +220,14 @@ body{
     font-size:18px;
 }
 
+.voucher-card.active{
+
+    border:2px solid #00d9ff;
+
+    box-shadow:0 0 15px #00d9ff55;
+
+}
+
 /* ==========================
    PAYMENT
 ========================== */
