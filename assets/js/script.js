@@ -22,6 +22,8 @@ function activateVoucher() {
 
             document.getElementById("summary-total").textContent =
                 "Rp " + Number(card.dataset.price).toLocaleString("id-ID");
+                
+            document.getElementById("checkoutBtn").disabled = false;
 
         };
 
