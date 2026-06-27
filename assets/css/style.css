@@ -292,3 +292,37 @@ body{
     border-radius:12px;
     font-weight:bold;
 }
+
+/* ==========================
+   ORDER SUMMARY
+========================== */
+
+.summary-section{
+    width:90%;
+    max-width:500px;
+    margin:40px auto 120px;
+}
+
+.summary-card{
+    background:#171a21;
+    border:1px solid #2c2f36;
+    border-radius:16px;
+    padding:20px;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:12px 0;
+    border-bottom:1px solid #2c2f36;
+}
+
+.summary-row:last-child{
+    border-bottom:none;
+}
+
+.total{
+    font-size:20px;
+    font-weight:bold;
+    color:#00d9ff;
+}
