@@ -1,1 +1,20 @@
-
+[
+    {
+        "id":1,
+        "name":"626 Cash Pack",
+        "cash":"600 + 26 Bonus",
+        "price":12850
+    },
+    {
+        "id":2,
+        "name":"3130 Cash Pack",
+        "cash":"3000 + 130 Bonus",
+        "price":65921
+    },
+    {
+        "id":3,
+        "name":"6366 Cash Pack",
+        "cash":"6000 + 366 Bonus",
+        "price":131850
+    }
+]
