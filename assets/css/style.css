@@ -268,11 +268,9 @@ body{
 }
 
 .payment-card.active{
-
     border:2px solid #00d9ff;
-
     background:#1a2233;
-
+    box-shadow:0 0 20px rgba(0,217,255,.35);
 }
 
 /* ==========================
