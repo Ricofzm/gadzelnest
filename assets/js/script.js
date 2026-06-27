@@ -44,16 +44,16 @@ serverInput.addEventListener("input", () => {
         serverInput.value || "-";
 });
 
-const payments=document.querySelectorAll(".payment-card");
+const payments = document.querySelectorAll(".payment-card");
 
-payments.forEach(payment=>{
+payments.forEach(payment => {
 
-payment.onclick=()=>{
+    payment.addEventListener("click", () => {
 
-payments.forEach(p=>p.classList.remove("active"));
+        payments.forEach(p => p.classList.remove("active"));
 
-payment.classList.add("active");
+        payment.classList.add("active");
 
-}
+    });
 
 });
