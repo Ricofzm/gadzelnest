@@ -84,10 +84,10 @@ document.getElementById("closeModal").addEventListener("click", () => {
 
 });
 
-document.getElementById("continueBtn").addEventListener("click", () => {
+document.getElementById("continueBtn").addEventListener("click", async () => {
 
     const order = {
-        
+
         orderId: "GN-" + Date.now(),
 
         charId: charInput.value,
@@ -103,6 +103,25 @@ document.getElementById("continueBtn").addEventListener("click", () => {
     };
 
     localStorage.setItem("order", JSON.stringify(order));
+
+    const { error } = await supabase
+    .from("orders")
+    .insert([{
+        order_id: order.orderId,
+        char_id: order.charId,
+        server_id: order.serverId,
+        voucher: order.voucher,
+        payment: order.payment,
+        total: order.total
+    }]);
+
+    if(error){
+
+        alert(error.message);
+
+        return;
+
+    }
 
     window.location.href = "pages/invoice.html";
 
