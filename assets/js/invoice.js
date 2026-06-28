@@ -30,13 +30,17 @@ const timer = setInterval(() => {
     document.getElementById("countdown").textContent =
         `${minute}:${second.toString().padStart(2, "0")}`;
 
-    if (time <= 0) {
+    if(time <= 0){
 
         clearInterval(timer);
-
+    
         document.querySelector(".payment-status").textContent =
-            "❌ Invoice Kedaluwarsa";
-
+        "❌ Invoice Kedaluwarsa";
+    
+        document.querySelector(".hero-btn").disabled = true;
+        document.querySelector(".hero-btn").textContent =
+        "Invoice Expired";
+    
     }
 
     time--;
