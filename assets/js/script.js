@@ -1,16 +1,12 @@
 function activateVoucher() {
 
     const cards = document.querySelectorAll(".voucher-card");
-
     const checkoutName = document.getElementById("checkout-name");
     const checkoutPrice = document.getElementById("checkout-price");
 
     cards.forEach(card => {
-
         card.onclick = () => {
-
             cards.forEach(c => c.classList.remove("active"));
-
             card.classList.add("active");
 
             checkoutName.textContent = card.dataset.name;
@@ -19,16 +15,13 @@ function activateVoucher() {
 
             // Update Ringkasan Pesanan
             document.getElementById("summary-voucher").textContent = card.dataset.name;
-
             document.getElementById("summary-total").textContent =
                 "Rp " + Number(card.dataset.price).toLocaleString("id-ID");
+                
             validateCheckout();
             showToast("✅ Voucher berhasil dipilih");
-
         };
-
     });
-
 }
 
 const charInput = document.getElementById("charId");
@@ -47,23 +40,16 @@ serverInput.addEventListener("input", () => {
 });
 
 const payments = document.querySelectorAll(".payment-card");
-
 payments.forEach(payment => {
-
     payment.addEventListener("click", () => {
-
         payments.forEach(p => p.classList.remove("active"));
-
         payment.classList.add("active");
-
         document.getElementById("summary-payment").textContent =
             payment.textContent;
             
         validateCheckout();
         showToast("💳 Metode pembayaran dipilih");
-
     });
-
 });
 
 const checkoutBtn = document.getElementById("checkoutBtn");
