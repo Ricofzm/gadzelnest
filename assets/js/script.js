@@ -5,7 +5,7 @@ function activateVoucher() {
     const checkoutPrice = document.getElementById("checkout-price");
 
     cards.forEach(card => {
-        card.onclick = () => {
+        card.addEventListener("click",()=>{
             cards.forEach(c => c.classList.remove("active"));
             card.classList.add("active");
 
@@ -20,7 +20,7 @@ function activateVoucher() {
                 
             validateCheckout();
             showToast("✅ Voucher berhasil dipilih");
-        };
+        });
     });
 }
 
@@ -55,6 +55,8 @@ payments.forEach(payment => {
 const checkoutBtn = document.getElementById("checkoutBtn");
 const modal = document.getElementById("orderModal");
 
+validateCheckout();
+
 checkoutBtn.addEventListener("click", () => {
 
     document.getElementById("modal-char").textContent =
@@ -84,9 +86,23 @@ document.getElementById("closeModal").addEventListener("click", () => {
 
 document.getElementById("continueBtn").addEventListener("click", () => {
 
-    showToast("🎉 Pesanan berhasil dibuat!");
+    const order = {
 
-    modal.classList.remove("active");
+        charId: charInput.value,
+
+        serverId: serverInput.value,
+
+        voucher: document.getElementById("summary-voucher").textContent,
+
+        payment: document.getElementById("summary-payment").textContent,
+
+        total: document.getElementById("summary-total").textContent
+
+    };
+
+    localStorage.setItem("order", JSON.stringify(order));
+
+    window.location.href = "page/invoice.html";
 
 });
 
@@ -143,20 +159,24 @@ function scrollToTopup(){
 
 }
 
+let toastTimeout;
+
 function showToast(message){
 
-    const toast = document.getElementById("toast");
+    const toast=document.getElementById("toast");
 
-    const toastMessage = document.getElementById("toast-message");
+    const toastMessage=document.getElementById("toast-message");
 
-    toastMessage.textContent = message;
+    clearTimeout(toastTimeout);
+
+    toastMessage.textContent=message;
 
     toast.classList.add("show");
 
-    setTimeout(() => {
+    toastTimeout=setTimeout(()=>{
 
         toast.classList.remove("show");
 
-    }, 2500);
+    },2500);
 
 }
