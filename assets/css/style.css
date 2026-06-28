@@ -451,3 +451,35 @@ body{
     opacity:1;
     transform:translateX(-50%) translateY(0);
 }
+
+/* INVOICE */
+
+.invoice-page{
+
+width:90%;
+
+max-width:500px;
+
+margin:60px auto;
+
+}
+
+.invoice-card{
+
+background:#171a21;
+
+border:1px solid #2c2f36;
+
+border-radius:18px;
+
+padding:24px;
+
+}
+
+.invoice-card button{
+
+width:100%;
+
+margin-top:25px;
+
+}
