@@ -1,6 +1,7 @@
 const order = JSON.parse(localStorage.getItem("order"));
 
-document.getElementById("invoice-order").textContent = orderId;
+if(!order){
+    window.location.href="../index.html";
 
 // Isi data invoice
 if (order) {
