@@ -94,6 +94,26 @@ document.getElementById("closeModal").addEventListener("click", () => {
 
 });
 
+modal.addEventListener("click",(e)=>{
+
+    if(e.target===modal){
+    
+        modal.classList.remove("active");
+    
+    }
+
+});
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Escape"){
+    
+        modal.classList.remove("active");
+    
+    }
+
+});
+
 function validateCheckout(){
 
     const charId = charInput.value.trim();
@@ -112,5 +132,17 @@ function validateCheckout(){
         voucher !== "-" &&
         payment !== "-"
     );
+
+}
+
+function scrollToTopup(){
+
+    document
+    .querySelector(".account-section")
+    .scrollIntoView({
+    
+        behavior:"smooth"
+    
+    });
 
 }
