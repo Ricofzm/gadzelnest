@@ -426,3 +426,29 @@ body{
     font-size:42px;
     margin-bottom:15px;
 }
+
+/* ==========================
+   TOAST
+========================== */
+
+.toast{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%) translateY(-30px);
+    background:#171a21;
+    color:#fff;
+    padding:14px 22px;
+    border-radius:12px;
+    border:1px solid #00d9ff;
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:1000;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateX(-50%) translateY(0);
+}
