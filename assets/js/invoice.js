@@ -1,4 +1,7 @@
 const order = JSON.parse(localStorage.getItem("order"));
+const orderId = "GN-" + Date.now();
+
+document(.getElementById("invoice-order").textContent = orderId;
 
 if(order){
 
@@ -9,11 +12,6 @@ if(order){
     document.getElementById("invoice-voucher").textContent = order.voucher;
     
     document.getElementById("invoice-payment").textContent = order.payment;
-    
+
     document.getElementById("invoice-total").textContent = order.total;
-
 }
-
-const orderId = "GN-" + Date.now();
-
-    document(.getElementById("invoice-order").textContent = orderId;
