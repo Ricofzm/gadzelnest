@@ -87,6 +87,8 @@ document.getElementById("closeModal").addEventListener("click", () => {
 document.getElementById("continueBtn").addEventListener("click", () => {
 
     const order = {
+        
+        orderId: "GN-" + Date.now(),
 
         charId: charInput.value,
 
