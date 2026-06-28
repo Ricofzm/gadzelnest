@@ -97,6 +97,11 @@ body{
     transform:scale(1.05);
 }
 
+.hero-btn:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
 /* ==========================
    ACCOUNT SECTION
 ========================== */
@@ -495,4 +500,44 @@ margin-top:25px;
 .waiting{
     background:#3a2d00;
     color:#ffd54f;
+}
+
+.invoice-page h1{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+}
+
+#countdown{
+
+    font-size:42px;
+
+    text-align:center;
+
+    color:#00d9ff;
+
+    margin:10px 0 25px;
+
+}
+
+#copyOrder{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-top:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#252932;
+
+    color:white;
+
+    cursor:pointer;
+
 }
