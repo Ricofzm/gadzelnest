@@ -104,7 +104,7 @@ document.getElementById("continueBtn").addEventListener("click", async () => {
 
     localStorage.setItem("order", JSON.stringify(order));
 
-    const { error } = await supabase
+    const { error } = await supabaseClient
     .from("orders")
     .insert([{
         order_id: order.orderId,
