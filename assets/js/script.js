@@ -96,6 +96,14 @@ document.getElementById("closeModal").addEventListener("click", () => {
 
 });
 
+document.getElementById("continueBtn").addEventListener("click", () => {
+
+    showToast("🎉 Pesanan berhasil dibuat!");
+
+    modal.classList.remove("active");
+
+});
+
 modal.addEventListener("click",(e)=>{
 
     if(e.target===modal){
