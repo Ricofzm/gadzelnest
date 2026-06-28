@@ -102,7 +102,7 @@ document.getElementById("continueBtn").addEventListener("click", () => {
 
     localStorage.setItem("order", JSON.stringify(order));
 
-    window.location.href = "page/invoice.html";
+    window.location.href = "pages/invoice.html";
 
 });
 
