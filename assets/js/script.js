@@ -23,6 +23,7 @@ function activateVoucher() {
             document.getElementById("summary-total").textContent =
                 "Rp " + Number(card.dataset.price).toLocaleString("id-ID");
             validateCheckout();
+            showToast("✅ Voucher berhasil dipilih");
 
         };
 
@@ -59,6 +60,7 @@ payments.forEach(payment => {
             payment.textContent;
             
         validateCheckout();
+        showToast("💳 Metode pembayaran dipilih");
 
     });
 
