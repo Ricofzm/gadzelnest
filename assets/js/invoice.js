@@ -23,6 +23,7 @@ async function loadInvoice(){
     document.getElementById("invoice-voucher").textContent = data.voucher;
     document.getElementById("invoice-payment").textContent = data.payment;
     document.getElementById("invoice-total").textContent = data.total;
+    document.getElementById("invoice-status").textContent = data.status;
 
 }
 
