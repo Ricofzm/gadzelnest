@@ -59,46 +59,64 @@ document.getElementById("closeModal").addEventListener("click", () => {
 
 });
 
-document.getElementById("continueBtn").addEventListener("click", async () => {
+const continueBtn = document.getElementById("continueBtn");
 
-    const order = {
+continueBtn.addEventListener("click", async () => {
 
-        orderId: "GN-" + Date.now(),
+    continueBtn.disabled = true;
+    continueBtn.textContent = "Memproses...";
 
-        charId: charInput.value,
+    try {
 
-        serverId: serverInput.value,
+        const order = {
 
-        voucher: document.getElementById("summary-voucher").textContent,
+            orderId: "GN-" + Date.now(),
 
-        payment: document.getElementById("summary-payment").textContent,
+            charId: charInput.value.trim(),
 
-        total: document.getElementById("summary-total").textContent
+            serverId: serverInput.value.trim(),
 
-    };
+            voucher: document.getElementById("summary-voucher").textContent,
 
-    localStorage.setItem("order", JSON.stringify(order));
+            payment: document.getElementById("summary-payment").textContent,
 
-    const { error } = await supabaseClient
-    .from("orders")
-    .insert([{
-        order_id: order.orderId,
-        char_id: order.charId,
-        server_id: order.serverId,
-        voucher: order.voucher,
-        payment: order.payment,
-        total: order.total
-    }]);
+            total: document.getElementById("summary-total").textContent
 
-    if(error){
+        };
 
-        alert(error.message);
+        const { error } = await supabaseClient
+        .from("orders")
+        .insert([{
 
-        return;
+            order_id: order.orderId,
+            char_id: order.charId,
+            server_id: order.serverId,
+            voucher: order.voucher,
+            payment: order.payment,
+            total: order.total,
+            status: "Pending"
+
+        }]);
+
+        if(error) throw error;
+
+        localStorage.setItem("order", JSON.stringify(order));
+
+        window.location.href =
+        `pages/invoice.html?id=${order.orderId}`;
+
+    } catch(err) {
+
+        console.error(err);
+
+        alert("Gagal membuat pesanan.\n" + err.message);
+
+    } finally {
+
+        continueBtn.disabled = false;
+        continueBtn.textContent = "Lanjut Bayar";
 
     }
-
-    window.location.href = `pages/invoice.html?id=${order.orderId}`;
 
 });
 
