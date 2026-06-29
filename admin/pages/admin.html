@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - GadzelNest</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+<section class="invoice-page">
+
+    <h1>Dashboard Admin</h1>
+
+    <div class="summary-card">
+
+        <div class="summary-row">
+            <span>Total Order</span>
+            <strong id="totalOrder">0</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Pending</span>
+            <strong id="pendingOrder">0</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Paid</span>
+            <strong id="paidOrder">0</strong>
+        </div>
+
+        <div class="summary-row">
+            <span>Expired</span>
+            <strong id="expiredOrder">0</strong>
+        </div>
+
+    </div>
+
+    <br>
+
+    <input
+        id="search"
+        type="text"
+        placeholder="Cari Order ID..."
+    >
+
+    <br><br>
+
+    <div id="orderList"></div>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase.js"></script>
+<script src="../assets/js/admin.js"></script>
+
+</body>
+</html>
