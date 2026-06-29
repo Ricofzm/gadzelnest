@@ -147,27 +147,6 @@ document.addEventListener("keydown",(e)=>{
 
 });
 
-function validateCheckout(){
-
-    const charId = charInput.value.trim();
-
-    const serverId = serverInput.value.trim();
-
-    const voucher =
-        document.getElementById("summary-voucher").textContent;
-
-    const payment =
-        document.getElementById("summary-payment").textContent;
-
-    checkoutBtn.disabled = !(
-        charId &&
-        serverId &&
-        voucher !== "-" &&
-        payment !== "-"
-    );
-
-}
-
 function scrollToTopup(){
 
     document
