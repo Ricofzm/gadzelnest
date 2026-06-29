@@ -1,15 +1,30 @@
-const order = JSON.parse(localStorage.getItem("order"));
+const params = new URLSearchParams(window.location.search);
+const orderId = params.get("id");
 
-if(!order){
-    window.location.href="../index.html";
+loadInvoice();
+
+async function loadInvoice(){
+
+    const { data, error } = await supabaseClient
+    .from("orders")
+    .select("*")
+    .eq("order_id", orderId)
+    .single();
+
+    if(error){
+        alert(error.message);
+        window.location.href = "../index.html";
+        return;
+    }
+
+    document.getElementById("invoice-order").textContent = data.order_id;
+    document.getElementById("invoice-char").textContent = data.char_id;
+    document.getElementById("invoice-server").textContent = data.server_id;
+    document.getElementById("invoice-voucher").textContent = data.voucher;
+    document.getElementById("invoice-payment").textContent = data.payment;
+    document.getElementById("invoice-total").textContent = data.total;
+
 }
-
-document.getElementById("invoice-order").textContent = order.orderId;
-document.getElementById("invoice-char").textContent = order.charId;
-document.getElementById("invoice-server").textContent = order.serverId;
-document.getElementById("invoice-voucher").textContent = order.voucher;
-document.getElementById("invoice-payment").textContent = order.payment;
-document.getElementById("invoice-total").textContent = order.total;
 
 // Countdown
 let time = 15 * 60;
@@ -43,10 +58,9 @@ const timer = setInterval(() => {
 // Copy Order ID
 document.getElementById("copyOrder").addEventListener("click", async () => {
 
-    const orderId =
-        document.getElementById("invoice-order").textContent;
+    const orderText = document.getElementById("invoice-order").textContent;
 
-    await navigator.clipboard.writeText(orderId);
+    await navigator.clipboard.writeText(orderText);
 
     alert("Order ID berhasil disalin.");
 
