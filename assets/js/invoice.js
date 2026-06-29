@@ -16,6 +16,9 @@ async function loadInvoice(){
         window.location.href = "../index.html";
         return;
     }
+    
+    const createdAt = new Date(data.created_at);
+    startCountdown(createdAt);
 
     document.getElementById("invoice-order").textContent = data.order_id;
     document.getElementById("invoice-char").textContent = data.char_id;
@@ -23,38 +26,59 @@ async function loadInvoice(){
     document.getElementById("invoice-voucher").textContent = data.voucher;
     document.getElementById("invoice-payment").textContent = data.payment;
     document.getElementById("invoice-total").textContent = data.total;
-    document.getElementById("invoice-status").textContent = data.status;
+    
+    const status = document.getElementById("invoice-status");
+    status.textContent = data.status;
+    status.className = data.status.toLowerCase();
 
 }
 
 // Countdown
-let time = 15 * 60;
+async function startCountdown(createdAt){
 
-const timer = setInterval(() => {
+    const expireTime = createdAt.getTime() + (15 * 60 * 1000);
 
-    const minute = Math.floor(time / 60);
+    const timer = setInterval(()=>{
 
-    const second = time % 60;
+        const now = Date.now();
 
-    document.getElementById("countdown").textContent =
-        `${minute}:${second.toString().padStart(2, "0")}`;
+        const remaining = Math.floor((expireTime - now)/1000);
 
-    if(time <= 0){
+        if(remaining <= 0){
 
-        clearInterval(timer);
-    
-        document.querySelector(".payment-status").textContent =
-        "❌ Invoice Kedaluwarsa";
-    
-        document.querySelector(".hero-btn").disabled = true;
-        document.querySelector(".hero-btn").textContent =
-        "Invoice Expired";
-    
-    }
+            clearInterval(timer);
 
-    time--;
+            document.getElementById("countdown").textContent="00:00";
 
-}, 1000);
+            document.querySelector(".payment-status").textContent =
+            "❌ Invoice Kedaluwarsa";
+
+            document.querySelector(".hero-btn").disabled=true;
+
+            document.querySelector(".hero-btn").textContent =
+            "Invoice Expired";
+
+            await supabaseClient
+            .from("orders")
+            .update({
+                status: "Expired"
+            })
+            .eq("order_id", orderId);
+            
+            return;
+
+        }
+
+        const minute=Math.floor(remaining/60);
+
+        const second=remaining%60;
+
+        document.getElementById("countdown").textContent=
+        `${minute}:${second.toString().padStart(2,"0")}`;
+
+    },1000);
+
+}
 
 // Copy Order ID
 document.getElementById("copyOrder").addEventListener("click", async () => {
