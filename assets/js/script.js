@@ -48,6 +48,7 @@ payments.forEach(payment => {
             payment.textContent;
             
         validateCheckout();
+        
         showToast("💳 Metode pembayaran dipilih");
     });
 });
