@@ -123,7 +123,7 @@ document.getElementById("continueBtn").addEventListener("click", async () => {
 
     }
 
-    window.location.href = "pages/invoice.html";
+    window.location.href = `pages/invoice.html?id=${order.orderId}`;
 
 });
 
