@@ -541,3 +541,18 @@ margin-top:25px;
     cursor:pointer;
 
 }
+
+.pending{
+    color:#f59e0b;
+    font-weight:600;
+}
+
+.paid{
+    color:#22c55e;
+    font-weight:600;
+}
+
+.expired{
+    color:#ef4444;
+    font-weight:600;
+}
