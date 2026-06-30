@@ -8,9 +8,11 @@ async function loadProducts(){
 
         const grid = document.getElementById("voucherGrid");
 
-        products.forEach(product=>{
+        let html = "";
 
-            grid.innerHTML += `
+        products.forEach(product => {
+        
+            html += `
                 <div class="voucher-card"
                     data-name="${product.name}"
                     data-price="${product.price}">
@@ -27,6 +29,8 @@ async function loadProducts(){
             `;
 
         });
+        
+        grid.innerHTML = html;
 
         activateVoucher();
 
