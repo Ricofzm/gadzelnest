@@ -140,8 +140,6 @@ document.addEventListener("keydown",(e)=>{
 
 });
 
-activateVoucher();
-
 function scrollToTopup(){
 
     document
