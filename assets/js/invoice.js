@@ -30,7 +30,10 @@ async function loadInvoice() {
 
     updateStatusUI(data.status);
 
-    const createdAt = new Date(data.created_at);
+    const createdAt = data.created_at
+    ? new Date(data.created_at)
+    : new Date();
+
     startCountdown(createdAt, data.status);
 
 }
