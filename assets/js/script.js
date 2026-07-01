@@ -67,9 +67,7 @@ checkoutBtn.addEventListener("click", () => {
 });
 
 closeModalBtn.addEventListener("click", () => {
-
     modal.classList.remove("active");
-
 });
 
 const continueBtn = document.getElementById("continueBtn");
@@ -160,9 +158,7 @@ function scrollToTopup(){
     document
     .querySelector(".account-section")
     .scrollIntoView({
-    
         behavior:"smooth"
-    
     });
 
 }
