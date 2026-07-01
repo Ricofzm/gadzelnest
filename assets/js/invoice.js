@@ -26,7 +26,8 @@ async function loadInvoice() {
     document.getElementById("invoice-server").textContent = data.server_id;
     document.getElementById("invoice-voucher").textContent = data.voucher;
     document.getElementById("invoice-payment").textContent = data.payment;
-    document.getElementById("invoice-total").textContent = data.total;
+    document.getElementById("invoice-total").textContent =
+    "Rp " + Number(data.total).toLocaleString("id-ID");
 
     updateStatusUI(data.status);
 
