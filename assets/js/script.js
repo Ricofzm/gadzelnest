@@ -1,15 +1,26 @@
 const charInput = document.getElementById("charId");
 const serverInput = document.getElementById("serverId");
 
+const summaryChar =
+document.getElementById("summary-char");
+const summaryServer =
+document.getElementById("summary-server");
+const summaryVoucher =
+document.getElementById("summary-voucher");
+const summaryPayment =
+document.getElementById("summary-payment");
+const summaryTotal =
+document.getElementById("summary-total");
+
 charInput.addEventListener("input", () => {
-    document.getElementById("summary-char").textContent =
-        charInput.value || "-";
+    charInput.value = charInput.value.replace(/\D/g,"");
+    summaryChar.textContent = charInput.value || "-";
     validateCheckout();
 });
 
 serverInput.addEventListener("input", () => {
-    document.getElementById("summary-server").textContent =
-        serverInput.value || "-";
+    serverInput.value = serverInput.value.replace(/\D/g,"");
+    summaryServer.textContent = serverInput.value || "-";
     validateCheckout();
 });
 
@@ -18,8 +29,7 @@ payments.forEach(payment => {
     payment.addEventListener("click", () => {
         payments.forEach(p => p.classList.remove("active"));
         payment.classList.add("active");
-        document.getElementById("summary-payment").textContent =
-            payment.textContent;
+        summaryPayment.textContent = payment.textContent;
             
         validateCheckout();
         
@@ -29,31 +39,34 @@ payments.forEach(payment => {
 
 const checkoutBtn = document.getElementById("checkoutBtn");
 const modal = document.getElementById("orderModal");
+const modalChar =
+document.getElementById("modal-char");
+const modalServer =
+document.getElementById("modal-server");
+const modalVoucher =
+document.getElementById("modal-voucher");
+const modalPayment =
+document.getElementById("modal-payment");
+const modalTotal =
+document.getElementById("modal-total");
+const closeModalBtn =
+document.getElementById("closeModal");
 
 validateCheckout();
 
 checkoutBtn.addEventListener("click", () => {
 
-    document.getElementById("modal-char").textContent =
-        document.getElementById("summary-char").textContent;
-
-    document.getElementById("modal-server").textContent =
-        document.getElementById("summary-server").textContent;
-
-    document.getElementById("modal-voucher").textContent =
-        document.getElementById("summary-voucher").textContent;
-
-    document.getElementById("modal-payment").textContent =
-        document.getElementById("summary-payment").textContent;
-
-    document.getElementById("modal-total").textContent =
-        document.getElementById("summary-total").textContent;
+    modalChar.textContent = summaryChar.textContent;
+    modalServer.textContent = summaryServer.textContent;
+    modalVoucher.textContent = summaryVoucher.textContent;
+    modalPayment.textContent = summaryPayment.textContent;
+    modalTotal.textContent = summaryTotal.textContent;
 
     modal.classList.add("active");
 
 });
 
-document.getElementById("closeModal").addEventListener("click", () => {
+closeModalBtn.addEventListener("click", () => {
 
     modal.classList.remove("active");
 
@@ -70,17 +83,19 @@ continueBtn.addEventListener("click", async () => {
 
         const order = {
 
-            orderId: "GN-" + Date.now(),
-
+            orderId: generateOrderId(),
             charId: charInput.value.trim(),
-
             serverId: serverInput.value.trim(),
-
-            voucher: document.getElementById("summary-voucher").textContent,
-
-            payment: document.getElementById("summary-payment").textContent,
-
-            total: document.getElementById("summary-total").textContent
+            voucher: summaryVoucher.textContent,
+            payment: summaryPayment.textContent,
+            total: Number(
+                document
+                    .getElementById("summary-total")
+                    .textContent
+                    .replace("Rp", "")
+                    .replace(/\./g, "")
+                    .trim()
+            )
 
         };
 
@@ -109,7 +124,7 @@ continueBtn.addEventListener("click", async () => {
 
         console.error(err);
 
-        alert("Gagal membuat pesanan.\n" + err.message);
+        showToast("❌ Gagal membuat pesanan");
 
     } finally {
 
