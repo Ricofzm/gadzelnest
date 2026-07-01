@@ -138,9 +138,7 @@ continueBtn.addEventListener("click", async () => {
 modal.addEventListener("click",(e)=>{
 
     if(e.target===modal){
-    
         modal.classList.remove("active");
-    
     }
 
 });
