@@ -86,6 +86,7 @@ continueBtn.addEventListener("click", async () => {
             serverId: serverInput.value.trim(),
             voucher: summaryVoucher.textContent,
             payment: summaryPayment.textContent,
+            createdAt: new Date().toISOString(),
             total: Number(
                 document
                     .getElementById("summary-total")
@@ -107,6 +108,7 @@ continueBtn.addEventListener("click", async () => {
             voucher: order.voucher,
             payment: order.payment,
             total: order.total,
+            created_at: order.createdAt,
             status: "Pending"
 
         }]);
