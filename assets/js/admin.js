@@ -1,3 +1,5 @@
+const { data: { session } } = await supabaseClient.auth.getSession(); if (!session) { window.location.href = "/admin/login.html"; }
+
 loadOrders();
 
 async function loadOrders(){
