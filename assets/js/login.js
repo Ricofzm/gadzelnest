@@ -1,3 +1,19 @@
+checkSession();
+
+async function checkSession(){
+
+    const {
+        data:{session}
+    }=await supabaseClient.auth.getSession();
+
+    if(session){
+
+        location.href="/admin/admin.html";
+
+    }
+
+}
+
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
 
