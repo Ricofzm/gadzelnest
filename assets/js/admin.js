@@ -22,7 +22,10 @@ async function loadOrders(){
     const { data, error } = await supabaseClient
     .from("orders")
     .select("*")
-    .order("created_at",{ascending:false});
+    .order("created_at", { ascending: false });
+
+    console.log("DATA:", data);
+    console.log("ERROR:", error);
 
     if(error){
 
