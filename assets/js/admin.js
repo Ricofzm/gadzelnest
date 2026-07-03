@@ -142,3 +142,13 @@ document
     renderDashboard(data);
 
 });
+
+document
+.getElementById("logoutBtn")
+.addEventListener("click",async()=>{
+
+    await supabaseClient.auth.signOut();
+
+    location.href="/admin/login.html";
+
+});
