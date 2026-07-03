@@ -1,6 +1,21 @@
-const { data: { session } } = await supabaseClient.auth.getSession(); if (!session) { window.location.href = "/admin/login.html"; }
+checkLogin();
 
-loadOrders();
+async function checkLogin(){
+
+    const {
+        data:{session}
+    }=await supabaseClient.auth.getSession();
+
+    if(!session){
+
+        location.href="/admin/login.html";
+        return;
+
+    }
+
+    loadOrders();
+
+}
 
 async function loadOrders(){
 
