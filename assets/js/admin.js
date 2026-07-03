@@ -57,43 +57,75 @@ function renderDashboard(data){
 
         list.innerHTML += `
 
-        <div class="summary-card" style="margin-bottom:20px">
-
-            <div class="summary-row">
-                <span>Order</span>
-                <strong>${order.order_id}</strong>
+            <div class="order-card">
+            
+                <div class="order-top">
+                
+                    <div>
+                    
+                        <h3>${order.order_id}</h3>
+                        
+                        <p>${order.created_at ?? "-"}</p>
+                    
+                    </div>
+                
+                <span class="status-badge ${order.status.toLowerCase()}">
+                ${order.status}
+                </span>
+                
+                </div>
+                
+                <div class="order-grid">
+                
+                    <div>
+                    <small>Character</small>
+                    <b>${order.char_id}</b>
+                    </div>
+                    
+                    <div>
+                    <small>Server</small>
+                    <b>${order.server_id}</b>
+                    </div>
+                    
+                    <div>
+                    <small>Voucher</small>
+                    <b>${order.voucher}</b>
+                    </div>
+                    
+                    <div>
+                    <small>Total</small>
+                    <b>Rp ${Number(order.total).toLocaleString("id-ID")}</b>
+                    </div>
+                    
+                    <div>
+                    <small>Payment</small>
+                    <b>${order.payment}</b>
+                    </div>
+                
+                </div>
+                
+                <div class="order-actions">
+                
+                    <button
+                    class="paid-btn"
+                    onclick="changeStatus('${order.order_id}','Paid')">
+                    
+                    Paid
+                    
+                    </button>
+                    
+                    <button
+                    class="expired-btn"
+                    onclick="changeStatus('${order.order_id}','Expired')">
+                    
+                    Expired
+                    
+                    </button>
+                
+                </div>
+            
             </div>
-
-            <div class="summary-row">
-                <span>Char ID</span>
-                <strong>${order.char_id}</strong>
-            </div>
-
-            <div class="summary-row">
-                <span>Voucher</span>
-                <strong>${order.voucher}</strong>
-            </div>
-
-            <div class="summary-row">
-                <span>Total</span>
-                <strong>${order.total}</strong>
-            </div>
-
-            <div class="summary-row">
-                <span>Status</span>
-                <strong>${order.status}</strong>
-            </div>
-
-            <button onclick="changeStatus('${order.order_id}','Paid')">
-                Paid
-            </button>
-
-            <button onclick="changeStatus('${order.order_id}','Expired')">
-                Expired
-            </button>
-
-        </div>
-
+        
         `;
 
     });
