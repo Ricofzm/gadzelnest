@@ -9,47 +9,55 @@
 
 <body>
 
-<section class="invoice-page">
+<section class="admin-page">
 
-    <h1>Dashboard Admin</h1>
-    <button id="logoutBtn">
-    Logout
-    </button>
-
-    <div class="summary-card">
-
-        <div class="summary-row">
-            <span>Total Order</span>
-            <strong id="totalOrder">0</strong>
+    <div class="admin-header">
+    
+        <div>
+            <h1>Dashboard Admin</h1>
+            <p>GadzelNest Order Monitoring</p>
         </div>
-
-        <div class="summary-row">
-            <span>Pending</span>
-            <strong id="pendingOrder">0</strong>
-        </div>
-
-        <div class="summary-row">
-            <span>Paid</span>
-            <strong id="paidOrder">0</strong>
-        </div>
-
-        <div class="summary-row">
-            <span>Expired</span>
-            <strong id="expiredOrder">0</strong>
-        </div>
-
+    
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+    
     </div>
-
-    <br>
-
-    <input
-        id="search"
-        type="text"
-        placeholder="Cari Order ID..."
-    >
-
-    <br><br>
-
+    
+    <div class="stats-grid">
+    
+        <div class="stat-card">
+            <span>Total Order</span>
+            <h2 id="totalOrder">0</h2>
+        </div>
+    
+        <div class="stat-card pending-card">
+            <span>Pending</span>
+            <h2 id="pendingOrder">0</h2>
+        </div>
+    
+        <div class="stat-card paid-card">
+            <span>Paid</span>
+            <h2 id="paidOrder">0</h2>
+        </div>
+    
+        <div class="stat-card expired-card">
+            <span>Expired</span>
+            <h2 id="expiredOrder">0</h2>
+        </div>
+    
+    </div>
+    
+    <div class="admin-tools">
+    
+        <input
+            id="search"
+            type="text"
+            placeholder="Cari Order ID..."
+        >
+    
+    </div>
+    
     <div id="orderList"></div>
 
 </section>
