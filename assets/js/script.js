@@ -11,6 +11,13 @@ const summaryPayment =
 document.getElementById("summary-payment");
 const summaryTotal =
 document.getElementById("summary-total");
+const total = parseInt(
+    document
+        .getElementById("summary-total")
+        .textContent
+        .replace(/[^\d]/g, ""),
+    10
+);
 
 charInput.addEventListener("input", () => {
     charInput.value = charInput.value.replace(/\D/g,"");
@@ -87,14 +94,7 @@ continueBtn.addEventListener("click", async () => {
             voucher: summaryVoucher.textContent,
             payment: summaryPayment.textContent,
             createdAt: new Date().toISOString(),
-            total: Number(
-                document
-                    .getElementById("summary-total")
-                    .textContent
-                    .replace("Rp", "")
-                    .replace(/\./g, "")
-                    .trim()
-            )
+            total: total
 
         };
 
