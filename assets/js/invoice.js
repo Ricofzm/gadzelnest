@@ -1,3 +1,5 @@
+let timer;
+
 const params = new URLSearchParams(window.location.search);
 const orderId = params.get("id");
 
@@ -6,6 +8,31 @@ if (!orderId) {
 }
 
 loadInvoice();
+
+supabaseClient
+.channel("invoice-status")
+.on(
+    "postgres_changes",
+    {
+        event: "UPDATE",
+        schema: "public",
+        table: "orders",
+        filter: `order_id=eq.${orderId}`
+    },
+    ({ new: order }) => {
+
+        updateStatusUI(order.status);
+    
+        if (order.status !== "Pending") {
+            clearInterval(timer);
+        }
+    
+        document.getElementById("invoice-total").textContent =
+            "Rp " + Number(order.total).toLocaleString("id-ID");
+    
+    }
+)
+.subscribe();
 
 async function loadInvoice() {
 
@@ -39,58 +66,75 @@ async function loadInvoice() {
 
 }
 
-function updateStatusUI(status) {
+function updateStatusUI(status){
 
-    const statusEl = document.getElementById("invoice-status");
-    const paymentStatus = document.querySelector(".payment-status");
-    const confirmBtn = document.getElementById("confirmPayment");
+    const statusEl =
+    document.getElementById("invoice-status");
 
-    statusEl.className = status.toLowerCase();
+    const paymentStatus =
+    document.querySelector(".payment-status");
 
-    switch (status) {
+    statusEl.className =
+    status.toLowerCase();
+
+    switch(status){
 
         case "Pending":
 
-            statusEl.innerHTML = "🟡 Pending";
-            paymentStatus.textContent = "⏳ Menunggu Pembayaran";
+            statusEl.textContent = "🟡 Pending";
 
-            confirmBtn.disabled = false;
-            confirmBtn.textContent = "Saya Sudah Bayar";
+            paymentStatus.className =
+            "payment-status waiting";
+
+            paymentStatus.textContent =
+            "⏳ Menunggu Pembayaran";
 
             break;
 
         case "Paid":
 
-            statusEl.innerHTML = "🟢 Paid";
-            paymentStatus.textContent = "✅ Pembayaran Berhasil";
+            statusEl.textContent = "🟢 Paid";
 
-            confirmBtn.disabled = true;
-            confirmBtn.textContent = "Sudah Dibayar";
+            paymentStatus.className =
+            "payment-status success";
+
+            paymentStatus.textContent =
+            "✅ Pembayaran Berhasil";
+
+            clearInterval(timer);
 
             break;
 
         case "Expired":
 
-            statusEl.innerHTML = "🔴 Expired";
-            paymentStatus.textContent = "❌ Invoice Kedaluwarsa";
+            statusEl.textContent = "🔴 Expired";
 
-            confirmBtn.disabled = true;
-            confirmBtn.textContent = "Invoice Expired";
+            paymentStatus.className =
+            "payment-status expired-box";
 
-            document.getElementById("countdown").textContent = "00:00";
+            paymentStatus.textContent =
+            "❌ Invoice Kedaluwarsa";
+
+            document.getElementById("countdown").textContent =
+            "00:00";
+
+            clearInterval(timer);
 
             break;
+
     }
 
 }
 
 function startCountdown(createdAt, status) {
+    
+    clearInterval(timer);
 
     if (status !== "Pending") return;
 
     const expireTime = createdAt.getTime() + (15 * 60 * 1000);
 
-    const timer = setInterval(async () => {
+    timer = setInterval(async () => {
 
         const now = Date.now();
 
@@ -123,39 +167,6 @@ function startCountdown(createdAt, status) {
     }, 1000);
 
 }
-
-// Tombol Konfirmasi Bayar
-document
-    .getElementById("confirmPayment")
-    .addEventListener("click", async () => {
-
-        const btn = document.getElementById("confirmPayment");
-
-        btn.disabled = true;
-        btn.textContent = "Memproses...";
-
-        const { error } = await supabaseClient
-            .from("orders")
-            .update({
-                status: "Paid"
-            })
-            .eq("order_id", orderId);
-
-        if (error) {
-
-            alert(error.message);
-
-            btn.disabled = false;
-            btn.textContent = "Saya Sudah Bayar";
-
-            return;
-        }
-
-        updateStatusUI("Paid");
-
-        alert("Pembayaran berhasil dikonfirmasi.");
-
-    });
 
 // Copy Order ID
 document
