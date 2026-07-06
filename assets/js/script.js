@@ -115,7 +115,7 @@ continueBtn.addEventListener("click", async () => {
 
         if(error) throw error;
 
-        localStorage.setItem("order", JSON.stringify(order));
+        //localStorage.setItem("order", JSON.stringify(order));
 
         window.location.href =
         `pages/invoice.html?id=${order.orderId}`;
