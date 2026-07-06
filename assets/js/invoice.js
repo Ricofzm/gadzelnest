@@ -133,13 +133,10 @@ function startCountdown(createdAt, status) {
     if (status !== "Pending") return;
 
     const expireTime = createdAt.getTime() + (15 * 60 * 1000);
-
     timer = setInterval(async () => {
-
+        
         const now = Date.now();
-
         const remaining = Math.floor((expireTime - now) / 1000);
-
         if (remaining <= 0) {
 
             clearInterval(timer);
@@ -174,7 +171,6 @@ document
     .addEventListener("click", async () => {
 
         const order = document.getElementById("invoice-order").textContent;
-
         await navigator.clipboard.writeText(order);
 
         alert("Order ID berhasil disalin.");
