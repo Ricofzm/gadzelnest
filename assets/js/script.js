@@ -120,11 +120,16 @@ continueBtn.addEventListener("click", async () => {
         window.location.href =
         `pages/invoice.html?id=${order.orderId}`;
 
-    } catch(err) {
+    } catch(err){
 
         console.error(err);
-
-        showToast("❌ Gagal membuat pesanan");
+    
+        alert(
+            err?.message ||
+            err?.stack ||
+            JSON.stringify(err) ||
+            String(err)
+        );
 
     } finally {
 
