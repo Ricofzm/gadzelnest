@@ -252,6 +252,7 @@ body{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:15px;
+    padding:0 18px 18px;
 }
 
 .payment-card{
@@ -274,6 +275,35 @@ body{
     border:2px solid #00d9ff;
     background:#1a2233;
     box-shadow:0 0 20px rgba(0,217,255,.35);
+}
+
+.payment-group{
+    background:#171a21;
+    border:1px solid #2c2f36;
+    border-radius:16px;
+    margin-bottom:15px;
+    overflow:hidden;
+}
+
+.payment-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 20px;
+    font-weight:700;
+}
+
+.payment-group.disabled{
+    opacity:.6;
+}
+
+.payment-group.disabled .payment-header{
+    cursor:not-allowed;
+}
+
+.payment-header small{
+    color:#f59e0b;
+    font-size:13px;
 }
 
 /* ==========================
