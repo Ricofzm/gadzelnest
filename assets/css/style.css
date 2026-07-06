@@ -264,6 +264,11 @@ body{
     cursor:pointer;
     transition:.3s;
     font-weight:600;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:70px;
+    
 }
 
 .payment-card:hover{
@@ -304,6 +309,11 @@ body{
 .payment-header small{
     color:#f59e0b;
     font-size:13px;
+}
+
+.payment-card img{
+    max-width:90px;
+    max-height:40px;
 }
 
 /* ==========================
