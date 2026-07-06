@@ -580,6 +580,16 @@ margin-top:25px;
     font-size:14px;
 }
 
+.success{
+    background:#10331d;
+    color:#4ade80;
+}
+
+.expired-box{
+    background:#351414;
+    color:#f87171;
+}
+
 /* ===========================
    ADMIN LOGIN
 =========================== */
