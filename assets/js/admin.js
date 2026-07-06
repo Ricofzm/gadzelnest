@@ -4,17 +4,16 @@ async function checkLogin(){
 
     const {
         data:{session}
-    }=await supabaseClient.auth.getSession();
+    } = await supabaseClient.auth.getSession();
+
+    console.log("SESSION:", session);
 
     if(!session){
-
         location.href="/admin/login.html";
         return;
-
     }
 
     loadOrders();
-
 }
 
 async function loadOrders(){
