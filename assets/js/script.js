@@ -12,6 +12,12 @@ document.getElementById("summary-payment");
 const summaryTotal =
 document.getElementById("summary-total");
 
+summaryPayment.textContent = "QRIS";
+
+document
+.querySelector(".payment-card")
+.classList.add("active");
+
 charInput.addEventListener("input", () => {
     charInput.value = charInput.value.replace(/\D/g,"");
     summaryChar.textContent = charInput.value || "-";
@@ -22,19 +28,6 @@ serverInput.addEventListener("input", () => {
     serverInput.value = serverInput.value.replace(/\D/g,"");
     summaryServer.textContent = serverInput.value || "-";
     validateCheckout();
-});
-
-const payments = document.querySelectorAll(".payment-card");
-payments.forEach(payment => {
-    payment.addEventListener("click", () => {
-        payments.forEach(p => p.classList.remove("active"));
-        payment.classList.add("active");
-        summaryPayment.textContent = payment.textContent;
-            
-        validateCheckout();
-        
-        showToast("💳 Metode pembayaran dipilih");
-    });
 });
 
 const checkoutBtn = document.getElementById("checkoutBtn");
