@@ -998,7 +998,7 @@ button:active{
     overflow:hidden;
 }
 
-.account-card::before,
+/*.account-card::before,
 .summary-card::before,
 .payment-group::before,
 .voucher-card::before,
@@ -1014,7 +1014,7 @@ button:active{
     );
 
     pointer-events:none;
-}
+}*/
 
 @keyframes fadeUp{
     from{
