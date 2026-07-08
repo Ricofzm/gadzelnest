@@ -223,11 +223,15 @@ button{
     left:-320px;
     width:290px;
     height:100vh;
-    background:#111318;
-    transition:.35s;
+    /* background lama: #111318  <-- HAPUS INI */
+    background: var(--glass); /* pake glass biar nyambung */
+    backdrop-filter: blur(var(--blur-strong)) saturate(160%);
+    -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(160%);
+    transition:.35s var(--ease);
     z-index:1200;
     padding:25px;
-    border-right:1px solid rgba(255,255,255,.08);
+    border-right:1px solid var(--glass-border); /* border tipis */
+    box-shadow: var(--glass-shadow);
 }
 
 .side-menu.active{
@@ -237,7 +241,8 @@ button{
 .menu-overlay{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.45);
+    background:rgba(20,18,40,.25); /* overlay lebih soft */
+    backdrop-filter: blur(8px);
     opacity:0;
     visibility:hidden;
     transition:.3s;
@@ -254,6 +259,8 @@ button{
     align-items:center;
     gap:15px;
     margin-bottom:35px;
+    border-bottom:1px solid var(--glass-border);
+    padding-bottom:20px;
 }
 
 .menu-header img{
@@ -263,10 +270,11 @@ button{
 
 .menu-header h3{
     font-size:22px;
+    color: var(--text); /* teks hitam */
 }
 
 .menu-header span{
-    color:#9ca3af;
+    color: var(--text3); /* teks abu */
     font-size:13px;
 }
 
@@ -280,20 +288,28 @@ button{
     display:flex;
     align-items:center;
     gap:14px;
-    color:white;
+    color: var(--text); /* ganti dari putih ke hitam */
     text-decoration:none;
     padding:14px 16px;
     border-radius:14px;
-    transition:.25s;
+    transition:.25s var(--ease);
+    font-weight:600;
 }
 
 .side-menu nav a:hover{
-    background:rgba(255,255,255,.06);
+    background: var(--glass-hover); /* hover jadi lebih putih */
+    color: var(--text);
+}
+
+.side-menu nav a.active{
+    background: var(--accent-gradient-soft); /* kasih gradient pas aktif */
+    border: 1px solid rgba(224,79,160,.25);
 }
 
 .side-menu svg{
     width:22px;
     height:22px;
+    color: var(--text2);
 }
 
 /* ==========================
