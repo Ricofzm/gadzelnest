@@ -223,14 +223,13 @@ button{
     left:-320px;
     width:290px;
     height:100vh;
-    /* background lama: #111318  <-- HAPUS INI */
-    background: var(--glass); /* pake glass biar nyambung */
+    background: var(--glass); 
     backdrop-filter: blur(var(--blur-strong)) saturate(160%);
     -webkit-backdrop-filter: blur(var(--blur-strong)) saturate(160%);
     transition:.35s var(--ease);
     z-index:1200;
     padding:25px;
-    border-right:1px solid var(--glass-border); /* border tipis */
+    border-right:1px solid var(--glass-border); 
     box-shadow: var(--glass-shadow);
 }
 
@@ -241,7 +240,7 @@ button{
 .menu-overlay{
     position:fixed;
     inset:0;
-    background:rgba(20,18,40,.25); /* overlay lebih soft */
+    background:rgba(20,18,40,.25); 
     backdrop-filter: blur(8px);
     opacity:0;
     visibility:hidden;
@@ -270,11 +269,11 @@ button{
 
 .menu-header h3{
     font-size:22px;
-    color: var(--text); /* teks hitam */
+    color: var(--text); 
 }
 
 .menu-header span{
-    color: var(--text3); /* teks abu */
+    color: var(--text3); 
     font-size:13px;
 }
 
@@ -288,7 +287,7 @@ button{
     display:flex;
     align-items:center;
     gap:14px;
-    color: var(--text); /* ganti dari putih ke hitam */
+    color: var(--text); 
     text-decoration:none;
     padding:14px 16px;
     border-radius:14px;
@@ -297,12 +296,12 @@ button{
 }
 
 .side-menu nav a:hover{
-    background: var(--glass-hover); /* hover jadi lebih putih */
+    background: var(--glass-hover); 
     color: var(--text);
 }
 
 .side-menu nav a.active{
-    background: var(--accent-gradient-soft); /* kasih gradient pas aktif */
+    background: var(--accent-gradient-soft); 
     border: 1px solid rgba(224,79,160,.25);
 }
 
