@@ -217,6 +217,85 @@ button{
 
 .menu-btn:active{transform:scale(.92);background:var(--glass-hover);}
 
+.side-menu{
+    position:fixed;
+    top:0;
+    left:-320px;
+    width:290px;
+    height:100vh;
+    background:#111318;
+    transition:.35s;
+    z-index:1200;
+    padding:25px;
+    border-right:1px solid rgba(255,255,255,.08);
+}
+
+.side-menu.active{
+    left:0;
+}
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+    z-index:1100;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+.menu-header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.menu-header img{
+    width:55px;
+    height:55px;
+}
+
+.menu-header h3{
+    font-size:22px;
+}
+
+.menu-header span{
+    color:#9ca3af;
+    font-size:13px;
+}
+
+.side-menu nav{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.side-menu nav a{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:white;
+    text-decoration:none;
+    padding:14px 16px;
+    border-radius:14px;
+    transition:.25s;
+}
+
+.side-menu nav a:hover{
+    background:rgba(255,255,255,.06);
+}
+
+.side-menu svg{
+    width:22px;
+    height:22px;
+}
+
 /* ==========================
    HERO — featured glass card
 ========================== */
