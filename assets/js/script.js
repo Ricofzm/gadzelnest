@@ -158,3 +158,21 @@ function scrollToTopup(){
     });
 
 }
+
+const menuBtn = document.getElementById("menuBtn");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuBtn.onclick = () =>{
+
+    sideMenu.classList.add("active");
+    menuOverlay.classList.add("active");
+
+}
+
+menuOverlay.onclick = ()=>{
+
+    sideMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+
+}
