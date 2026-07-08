@@ -178,8 +178,8 @@ button{
 }
 
 .logo img{
-    width:80px;
-    height:80px;
+    width:44px;
+    height:44px;
     object-fit:contain;
     border-radius:12px;
     background:var(--glass-active);
