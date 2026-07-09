@@ -18,18 +18,20 @@ async function checkLogin(){
 
 async function loadOrders(){
 
-    const { data, error } = await supabaseClient
-        .from("orders")
-        .select("*")
-        .order("created_at",{ascending:false});
-
-    console.log("DATA:", data);
-    console.log("ERROR:", error);
-
-    if(error){
-        alert(error.message);
+    const res = await fetch(
+        "https://gnest-api.enrikofzm.workers.dev/orders"
+    );
+    
+    const result = await res.json();
+    
+    if(!result.success){
+        alert("Gagal mengambil data");
         return;
     }
+    
+    const data = result.data;
+    
+    allOrders = data;
 
     document.getElementById("totalOrder").textContent = data.length;
 
@@ -135,19 +137,19 @@ function renderDashboard(data){
 
 async function changeStatus(orderId,status){
 
-    const { error } = await supabaseClient
-    .from("orders")
-    .update({
-        status:status
-    })
-    .eq("order_id",orderId);
-
-    if(error){
-
-        alert(error.message);
-        return;
-
-    }
+    await fetch(
+        "https://gnest-api.enrikofzm.workers.dev/status",
+        {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                orderId,
+                status
+            })
+        }
+    );
 
     loadOrders();
 
@@ -155,24 +157,19 @@ async function changeStatus(orderId,status){
 
 document
 .getElementById("search")
-.addEventListener("input",async(e)=>{
+.addEventListener("input",(e)=>{
 
-    const keyword = e.target.value;
+    const keyword = e.target.value.toLowerCase();
 
-    let query = supabaseClient
-    .from("orders")
-    .select("*")
-    .order("created_at",{ascending:false});
+    const filtered = allOrders.filter(order=>
 
-    if(keyword){
+        order.order_id.toLowerCase().includes(keyword) ||
 
-        query = query.ilike("order_id",`%${keyword}%`);
+        order.char_id.toLowerCase().includes(keyword)
 
-    }
+    );
 
-    const { data } = await query;
-
-    renderDashboard(data);
+    renderDashboard(filtered);
 
 });
 
