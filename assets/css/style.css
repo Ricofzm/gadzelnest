@@ -870,6 +870,12 @@ button{
     border:1px solid var(--glass-border);
 }
 
+.step-icon svg{
+    width: 26px;
+    height: 26px;
+    color: var(--text); 
+}
+
 .step-card:nth-child(2) .step-icon{border-radius:55% 45% 45% 55%/45% 55% 45% 55%;}
 .step-card:nth-child(3) .step-icon{border-radius:45% 55% 60% 40%/55% 40% 60% 45%;}
 
