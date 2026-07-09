@@ -71,50 +71,44 @@ continueBtn.addEventListener("click", async () => {
     continueBtn.textContent = "Memproses...";
 
     try {
-        
+
         const total = parseInt(
             summaryTotal.textContent.replace(/[^\d]/g, ""),
             10
         );
-        
-        console.log("TOTAL:", total);
-
+    
         const order = {
-
-            orderId: generateOrderId(),
+    
             charId: charInput.value.trim(),
             serverId: serverInput.value.trim(),
             voucher: summaryVoucher.textContent,
             payment: summaryPayment.textContent,
-            createdAt: new Date().toISOString(),
             total: total
-
+    
         };
-
-        const { error } = await supabaseClient
-        .from("orders")
-        .insert([{
-
-            order_id: order.orderId,
-            char_id: order.charId,
-            server_id: order.serverId,
-            voucher: order.voucher,
-            payment: order.payment,
-            total: order.total,
-            created_at: order.createdAt,
-            status: "Pending"
-
-        }]);
-
-        if(error) throw error;
-
-        //localStorage.setItem("order", JSON.stringify(order));
-
+    
+        const res = await fetch(
+            "https://gnest-api.enrikofzm.workers.dev/order",
+            {
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(order)
+            }
+        );
+    
+        const result = await res.json();
+    
+        if(!result.success){
+            throw new Error("Gagal membuat order");
+        }
+    
         window.location.href =
-        `pages/invoice.html?id=${order.orderId}`;
-
+        `pages/invoice.html?id=${result.orderId}`;
+    
     } catch(err){
-
+    
         console.error(err);
     
         alert(
@@ -123,7 +117,7 @@ continueBtn.addEventListener("click", async () => {
             JSON.stringify(err) ||
             String(err)
         );
-
+    
     } finally {
 
         continueBtn.disabled = false;
