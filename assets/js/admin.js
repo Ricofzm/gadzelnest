@@ -174,9 +174,9 @@ document
 
 document
 .getElementById("logoutBtn")
-.addEventListener("click",async()=>{
+.addEventListener("click",()=>{
 
-    await supabaseClient.auth.signOut();
+    localStorage.removeItem("admin_token");
 
     location.href="/admin/login.html";
 
