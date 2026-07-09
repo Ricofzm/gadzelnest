@@ -1,20 +1,19 @@
-checkLogin();
+function checkLogin(){
 
-async function checkLogin(){
+    const token=localStorage.getItem("admin_token");
 
-    const {
-        data:{session}
-    } = await supabaseClient.auth.getSession();
+    if(!token){
 
-    console.log("SESSION:", session);
-
-    if(!session){
         location.href="/admin/login.html";
         return;
+
     }
 
     loadOrders();
+
 }
+
+checkLogin();
 
 async function loadOrders(){
 
