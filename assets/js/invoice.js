@@ -36,17 +36,21 @@ supabaseClient
 
 async function loadInvoice() {
 
-    const { data, error } = await supabaseClient
-        .from("orders")
-        .select("*")
-        .eq("order_id", orderId)
-        .single();
-
-    if (error) {
-        alert(error.message);
-        window.location.href = "../index.html";
+    const res = await fetch(
+    `https://gnest-api.enrikofzm.workers.dev/invoice?id=${orderId}`
+    );
+    
+    const result = await res.json();
+    
+    if(!result.success){
+    
+        alert(result.message);
+        location.href="../index.html";
         return;
+    
     }
+    
+    const data = result.data;
 
     document.getElementById("invoice-order").textContent = data.order_id;
     document.getElementById("invoice-char").textContent = data.char_id;
