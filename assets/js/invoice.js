@@ -9,30 +9,7 @@ if (!orderId) {
 
 loadInvoice();
 
-supabaseClient
-.channel("invoice-status")
-.on(
-    "postgres_changes",
-    {
-        event: "UPDATE",
-        schema: "public",
-        table: "orders",
-        filter: `order_id=eq.${orderId}`
-    },
-    ({ new: order }) => {
-
-        updateStatusUI(order.status);
-    
-        if (order.status !== "Pending") {
-            clearInterval(timer);
-        }
-    
-        document.getElementById("invoice-total").textContent =
-            "Rp " + Number(order.total).toLocaleString("id-ID");
-    
-    }
-)
-.subscribe();
+setInterval(loadInvoice,3000);
 
 async function loadInvoice() {
 
