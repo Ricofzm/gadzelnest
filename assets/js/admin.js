@@ -1,3 +1,5 @@
+let allOrders = [];
+
 function checkLogin(){
 
     const token=localStorage.getItem("admin_token");
