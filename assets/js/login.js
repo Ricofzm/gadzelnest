@@ -1,9 +1,5 @@
-checkSession();
-
-async function checkSession(){
-
-    const form=document.getElementById("loginForm");
-    const msg=document.getElementById("msg");
+const form=document.getElementById("loginForm");
+const msg=document.getElementById("msg");
     
     form.addEventListener("submit",async(e)=>{
     
@@ -40,5 +36,3 @@ async function checkSession(){
         location.href="/admin/admin.html";
     
     });
-
-};
