@@ -20,7 +20,13 @@ checkLogin();
 async function loadOrders(){
 
     const res = await fetch(
-        "https://gnest-api.enrikofzm.workers.dev/orders"
+        "https://gnest-api.enrikofzm.workers.dev/orders",
+        {
+            headers:{
+                Authorization:
+                `Bearer ${localStorage.getItem("admin_token")}`
+            }
+        }
     );
     
     const result = await res.json();
@@ -143,7 +149,9 @@ async function changeStatus(orderId,status){
         {
             method:"POST",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                Authorization:
+                `Bearer ${localStorage.getItem("admin_token")}`
             },
             body:JSON.stringify({
                 orderId,
