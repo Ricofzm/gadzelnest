@@ -1101,6 +1101,24 @@ button{
     min-height:16px;
 }
 
+.login-card{
+    animation: fadeUp .5s ease;
+}
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
 /* ===========================
    ADMIN DASHBOARD
 =========================== */
