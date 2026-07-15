@@ -43,8 +43,6 @@ async function loadInvoice() {
     ? new Date(data.created_at)
     : new Date();
 
-    startCountdown(createdAt, data.status);
-
 }
 
 function updateStatusUI(status){
@@ -104,45 +102,6 @@ function updateStatusUI(status){
             break;
 
     }
-
-}
-
-function startCountdown(createdAt, status) {
-    
-    clearInterval(timer);
-
-    if (status !== "Pending") return;
-
-    const expireTime = createdAt.getTime() + (15 * 60 * 1000);
-    timer = setInterval(async () => {
-        
-        const now = Date.now();
-        const remaining = Math.floor((expireTime - now) / 1000);
-        if (remaining <= 0) {
-
-            clearInterval(timer);
-
-            document.getElementById("countdown").textContent = "00:00";
-
-            await supabaseClient
-                .from("orders")
-                .update({
-                    status: "Expired"
-                })
-                .eq("order_id", orderId);
-
-            updateStatusUI("Expired");
-
-            return;
-        }
-
-        const minute = Math.floor(remaining / 60);
-        const second = remaining % 60;
-
-        document.getElementById("countdown").textContent =
-            `${minute}:${second.toString().padStart(2, "0")}`;
-
-    }, 1000);
 
 }
 
